@@ -1,0 +1,37 @@
+.container {
+    display: block;
+    margin: 4rem auto;
+    width: 46rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto 1.5rem auto;
+}
+
+.taskcounter {
+    display: flex;
+    align-items: center;
+    color: var(--blue);
+}
+
+.taskcounter:last-child {
+    color: var(--purple);
+}
+
+.label {
+    font-size: 0.875rem;
+    font-weight: 700;
+    padding-right: 0.5rem;
+}
+
+.counter {
+    padding: 0.125rem 0.5rem;
+    font-weight: 700;
+    color: var(--gray-200);
+    font-size: 0.75rem;
+    background-color: var(--gray-400);
+    border: none;
+    border-radius: 999px;
+}

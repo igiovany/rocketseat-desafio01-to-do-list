@@ -1,22 +1,19 @@
-.main {
-    align-items: center;
+.container {
+    align-items: flex-start;
     display: flex;
-    flex-direction: column;
     justify-content: center;
 }
 
-.main form {
+.container form {
     align-items: center;
     display: flex;
     height: 3.375rem;
     justify-content: center;
     margin-top: -1.75rem;
     width: 46rem;
-
-    
 }
 
-.main form input {
+.container form input {
     background-color: var(--gray-500);
     border: 1px solid var(--gray-700);
     border-radius: 8px;
@@ -29,7 +26,7 @@
 
 }
 
-.main form button {
+.container form button {
     background-color: var(--blue-dark);
     border-radius: 8px;
     border: none;
@@ -48,7 +45,7 @@
 
 }
 
-.main form button:hover {
+.container form button:hover {
     background-color: var(--blue);
 
 }
