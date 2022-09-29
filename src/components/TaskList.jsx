@@ -18,6 +18,11 @@ export function TaskList() {
             </div>
             <div className={styles.tasks}>
                 <Task />
+                <Task />
+                <Task />
+                <Task />
+                <Task />
+                <Task />
             </div>
              
         </div>
