@@ -30,17 +30,31 @@ export function TaskList() {
     function handleCreateNewTask() { 
         event.preventDefault();
 
-        setTasks([...tasks, {
+        const newTaskContent = {
             id: uuidv4(),
             title: newTaskText,
             isComplete: false,
-        }]);
+        }
+
+        setTasks([...tasks, newTaskContent]);
 
         setNewTaskText('');
     }
 
     function handleNewTaskChange() {
         setNewTaskText(event.target.value);
+    }
+
+    function deleteTask(taskToDelete) {
+        const tasksWithoutDeletedOne =  tasks.filter(task => {
+            return task.id !== taskToDelete;
+        })
+
+        // console.log(tasksWithoutDeletedOne)
+
+        setTasks(tasksWithoutDeletedOne);
+
+        // console.log(`Deletar ${taskToDelete}`);
     }
 
     return (
@@ -78,8 +92,10 @@ export function TaskList() {
                         return (
                             <Task 
                                 key={task.id}
+                                id={task.id}
                                 title={task.title}
                                 isComplete={task.isComplete}
+                                onDeleteTask={deleteTask}
                             />
                         )
                     })}
