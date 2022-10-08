@@ -63,10 +63,10 @@ export function TaskList() {
                 <form onSubmit={handleCreateNewTask}>
                     <input
                         type="text"
-                        name="sabonete"
                         placeholder="Adicionar uma nova tarefa"
                         value={newTaskText}
                         onChange={handleNewTaskChange}
+                        required
                     />
                     <button type="submit">
                         Criar

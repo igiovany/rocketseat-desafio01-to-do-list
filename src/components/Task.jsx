@@ -12,7 +12,11 @@ export function Task({ id, title, isComplete, onDeleteTask }) {
                 />
                 <span className={styles.checkmark}></span>
             </label>
-            <button onClick={() => onDeleteTask(id)} title="Deletar tarefa" className={styles.deletebtn}>
+            <button
+                onClick={() => onDeleteTask(id)}
+                title="Deletar tarefa"
+                className={styles.deletebtn}
+            >
                  <Trash size={24} />
             </button>
         </div>
