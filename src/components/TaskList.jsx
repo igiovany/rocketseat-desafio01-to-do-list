@@ -61,14 +61,22 @@ export function TaskList() {
           }
           return task
         })
+        
     
-        const tasksIsComplete = newTasks.filter((task => task.isComplete === true))
-        const tasksToDo = newTasks.filter((task => task.isComplete === false))
+        setTasks(newTasks)
+        setNewTaskText('')
+
+        // Solução alternativa - Mover as tasks concluídas para o final:
+        // const tasksIsComplete = newTasks.filter((task => task.isComplete === true))
+        // const tasksToDo = newTasks.filter((task => task.isComplete === false))
     
-        const newTasksOrderedByToDo = tasksToDo.concat(tasksIsComplete)
-    
-        setTasks(newTasksOrderedByToDo)
+        // const newTasksOrderedByToDo = tasksToDo.concat(tasksIsComplete)
+
+        // setTasks(newTasksOrderedByToDo)
     }
+
+    const createdTaksCounter = tasks.length;
+    const doneTasksCounter = tasks.filter((task) => task.isComplete).length;
 
 
     return (
@@ -92,11 +100,11 @@ export function TaskList() {
                 <div className={styles.header}>
                     <div className={styles.taskcounter}>
                         <p className={styles.label}>Tarefas criadas</p>
-                        <p className={styles.counter}>0</p>
+                        <p className={styles.counter}>{createdTaksCounter}</p>
                     </div>
                     <div className={styles.taskcounter}>
                         <p className={styles.label}>Tarefas concluídas</p>
-                        <p className={styles.counter}>0</p>
+                        <p className={styles.counter}>{doneTasksCounter} de {createdTaksCounter}</p>
                     </div>
 
                     
