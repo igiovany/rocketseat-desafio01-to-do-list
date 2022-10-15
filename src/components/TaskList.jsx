@@ -10,19 +10,19 @@ export function TaskList() {
     const [tasks, setTasks] = useState([
         {
             id: uuidv4(),
-            title: 'Task1',
-            isComplete: true,
-        },
-        {
-            id: uuidv4(),
-            title: 'Task2',
+            title: 'Arrumar a cama',
             isComplete: false,
         },
         {
             id: uuidv4(),
-            title: 'Task3',
+            title: 'Dar banho no cachorro',
             isComplete: false,
         },
+        {
+            id: uuidv4(),
+            title: 'Fazer almoço',
+            isComplete: false,
+        }
     ])
 
     const [newTaskText, setNewTaskText] = useState('')
@@ -33,7 +33,7 @@ export function TaskList() {
         const newTaskContent = {
             id: uuidv4(),
             title: newTaskText,
-            isComplete: false,
+            isComplete: false
         }
 
         setTasks([...tasks, newTaskContent]);
@@ -49,13 +49,27 @@ export function TaskList() {
         const tasksWithoutDeletedOne =  tasks.filter(task => {
             return task.id !== taskToDelete;
         })
-
-        // console.log(tasksWithoutDeletedOne)
-
         setTasks(tasksWithoutDeletedOne);
-
-        // console.log(`Deletar ${taskToDelete}`);
     }
+
+
+    function handleTaskDone(taskId){
+        const newTasks = tasks.map((task) => {
+          if(task.id === taskId){
+            task.isComplete = !task.isComplete
+            return task
+          }
+          return task
+        })
+    
+        const tasksIsComplete = newTasks.filter((task => task.isComplete === true))
+        const tasksToDo = newTasks.filter((task => task.isComplete === false))
+    
+        const newTasksOrderedByToDo = tasksToDo.concat(tasksIsComplete)
+    
+        setTasks(newTasksOrderedByToDo)
+    }
+
 
     return (
         <div>
@@ -96,6 +110,7 @@ export function TaskList() {
                                 title={task.title}
                                 isComplete={task.isComplete}
                                 onDeleteTask={deleteTask}
+                                onTaskDone={handleTaskDone}
                             />
                         )
                     })}
