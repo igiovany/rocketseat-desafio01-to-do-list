@@ -3,6 +3,8 @@ import { Task } from './Task';
 import styles from './TaskList.module.css';
 import { PlusCircle } from 'phosphor-react';
 import { useState } from 'react';
+import clipboardicon from '../assets/clipboard.svg';
+
 
 
 export function TaskList() {
@@ -76,7 +78,10 @@ export function TaskList() {
     }
 
     const createdTaksCounter = tasks.length;
-    const doneTasksCounter = tasks.filter((task) => task.isComplete).length;
+    const totalOfCompletedTasks = tasks.reduce((counter, obj) => {
+        if (obj.isComplete === true) counter += 1
+        return counter;
+    }, 0);
 
 
     return (
@@ -104,26 +109,40 @@ export function TaskList() {
                     </div>
                     <div className={styles.taskcounter}>
                         <p className={styles.label}>Tarefas concluídas</p>
-                        <p className={styles.counter}>{doneTasksCounter} de {createdTaksCounter}</p>
+                        <p className={styles.counter}>
+                            {
+                                createdTaksCounter === 0
+                                ? 0
+                                : `${totalOfCompletedTasks} de ${tasks.length}`
+                            }
+                        </p>
                     </div>
 
                     
                 </div>
-                <div className={styles.tasks}>
-                    {tasks.map(task => {
-                        return (
-                            <Task 
-                                key={task.id}
-                                id={task.id}
-                                title={task.title}
-                                isComplete={task.isComplete}
-                                onDeleteTask={deleteTask}
-                                onTaskDone={handleTaskDone}
-                            />
-                        )
-                    })}
-                </div>
-                
+
+                {
+                    tasks.length !== 0 ? (
+                        tasks.map(task => {
+                            return (
+                                <Task 
+                                    key={task.id}
+                                    id={task.id}
+                                    title={task.title}
+                                    isComplete={task.isComplete}
+                                    onDeleteTask={deleteTask}
+                                    onTaskDone={handleTaskDone}
+                                />
+                            )
+                        })
+                    ) : (
+                        <div className={styles.emptytasklist}>
+                            <img src={clipboardicon} alt="Clipboard icon" />
+                            <strong>Você ainda não tem tarefas cadastradas</strong>
+                            <span>Crie tarefas e organize seus itens a fazer</span>
+                        </div>
+                    )
+                }                
             </div>
         </div>
     )
